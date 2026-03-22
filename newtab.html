@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>CommitGlow New Tab</title>
+    <link rel="stylesheet" href="lib/github-calendar-responsive.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #0d1117;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #c9d1d9;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            overflow: hidden;
+            /* Optional: Add a subtle gradient or background image here */
+            background-image: radial-gradient(circle at center, #161b22 0%, #0d1117 100%);
+        }
+        
+        .ntp-content {
+            text-align: center;
+            opacity: 0.8;
+            transition: opacity 0.5s ease;
+        }
+        
+        .ntp-content:hover {
+            opacity: 1;
+        }
+
+        /* Override widget styles for center placement if desired, 
+           but I'll keep it in the bottom-right as the user previously liked. */
+    </style>
+</head>
+<body>
+    <div class="ntp-content">
+        <h1 style="font-weight: 200; letter-spacing: 2px; color: #8b949e; margin-bottom: 40px;">COMMIT<b>GLOW</b></h1>
+    </div>
+
+    <!-- The widget container -->
+    <div id="commit-glow-widget"></div>
+
+    <script src="lib/github-calendar.min.js"></script>
+    <script src="newtab.js"></script>
+</body>
+</html>
