@@ -12,7 +12,7 @@
             <div class="glow-widget-container">
                 <div class="glow-header">
                     <span class="glow-dot"></span>
-                    ${GITHUB_USERNAME}'s Pulse
+                    <span class="glow-username">${GITHUB_USERNAME}</span>
                 </div>
                 <div id="calendar-target" class="calendar">
                     <div class="loading-msg">Summoning...</div>
@@ -25,9 +25,27 @@
             GitHubCalendar(target, GITHUB_USERNAME, {
                 responsive: true,
                 tooltips: true,
-                global_stats: true,
+                global_stats: false, // We'll handle stats ourselves if needed
                 proxy: (username) => fetch(`https://api.bloggify.net/gh-calendar/?username=${username}`).then(r => r.text())
             }).then(() => {
+                // Post-processing to strip away library-level UI junk
+                const junkSelectors = [
+                    '.contrib-column',
+                    '.text-gray',
+                    '.float-left',
+                    '.float-right',
+                    'a[href*="github.com"]',
+                    '.ContributionCalendar-label'
+                ];
+                
+                junkSelectors.forEach(sel => {
+                    target.querySelectorAll(sel).forEach(el => el.remove());
+                });
+
+                // Clean up the target container
+                target.style.border = 'none';
+                target.style.background = 'transparent';
+                
                 target.querySelector('.loading-msg')?.remove();
             }).catch(() => showFallback(target));
         } else {
@@ -36,7 +54,7 @@
     }
 
     function showFallback(target) {
-        target.innerHTML = `<img src="https://ghchart.rshah.org/${GITHUB_USERNAME}" style="width:100%; border-radius:12px;" alt="GitHub Contributions">`;
+        target.innerHTML = `<img src="https://ghchart.rshah.org/${GITHUB_USERNAME}" style="width:100%; border-radius:12px; opacity:0.8;" alt="GitHub Contributions">`;
     }
 
     // Initialize after a slight delay to ensure MYNT assets are ready
