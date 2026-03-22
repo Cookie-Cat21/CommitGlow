@@ -1,7 +1,7 @@
 // Load current settings
 function loadSettings() {
   chrome.storage.sync.get({
-    username: 'ovindu' // Default value
+    username: 'Cookie-Cat21' // Default value
   }, (items) => {
     document.getElementById('username').value = items.username;
   });

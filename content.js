@@ -1,5 +1,5 @@
 (function() {
-    let GITHUB_USERNAME = "ovindu";
+    let GITHUB_USERNAME = "Cookie-Cat21";
     let widgetVisible = false;
 
     // Initialize Widget
