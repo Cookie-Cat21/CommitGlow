@@ -33,7 +33,9 @@
   "web_accessible_resources": [
     {
       "resources": [
-        "icons/icon128.png"
+        "icons/icon128.png",
+        "styles.css",
+        "lib/github-calendar-responsive.css"
       ],
       "matches": [
         "<all_urls>"
