@@ -1949,12 +1949,7 @@
     <!-- ending-of-body -->
 
     <!-- CommitGlow Integration -->
-    <div id="commit-glow-widget"></div>
-    <link rel="stylesheet" href="lib/github-calendar-responsive.css">
-    <script src="lib/github-calendar.min.js"></script>
-    <script src="newtab-glow.js"></script>
-
-    <style>
+    <div id="commi    <style>
         body {
             overflow: hidden !important;
             height: 100vh !important;
@@ -1972,7 +1967,8 @@
             border: 1px solid rgba(255, 255, 255, 0.25);
             border-radius: 40px;
             padding: 12px 32px;
-            width: fit-content;
+            width: 85%;
+            max-width: 900px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
             font-family: var(--main-font-family);
             color: var(--textColorDark-blue);
@@ -2005,24 +2001,56 @@
         }
 
         .calendar {
-            transform: scale(0.65);
-            transform-origin: left center;
-            margin: -10px -40px -10px -10px;
+            flex: 1;
+            transform: scale(0.85);
+            transform-origin: center;
+            margin: -20px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Hide ALL GitHub Calendar Junk */
+        .calendar a, 
+        .calendar .ContributionCalendar-label,
+        .calendar .contrib-column,
+        .calendar .text-gray,
+        .calendar .sr-only,
+        .calendar h2 {
+            display: none !important;
+        }
+
+        #calendar-target {
+            border: none !important;
+            background: transparent !important;
+            width: 100% !important;
+        }
+
+        .ContributionCalendar {
+            width: 100% !important;
+            margin: 0 !important;
         }
 
         /* Adaptive Theme for Calendar Squares */
         .calendar .ContributionCalendar-day[data-level="0"] { fill: rgba(0, 0, 0, 0.05) !important; }
-        .calendar .ContributionCalendar-day[data-level="1"] { fill: color-mix(in srgb, var(--darkColor-blue) 20%, transparent) !important; }
-        .calendar .ContributionCalendar-day[data-level="2"] { fill: color-mix(in srgb, var(--darkColor-blue) 45%, transparent) !important; }
-        .calendar .ContributionCalendar-day[data-level="3"] { fill: color-mix(in srgb, var(--darkColor-blue) 70%, transparent) !important; }
+        .calendar .ContributionCalendar-day[data-level="1"] { fill: color-mix(in srgb, var(--darkColor-blue) 25%, transparent) !important; }
+        .calendar .ContributionCalendar-day[data-level="2"] { fill: color-mix(in srgb, var(--darkColor-blue) 50%, transparent) !important; }
+        .calendar .ContributionCalendar-day[data-level="3"] { fill: color-mix(in srgb, var(--darkColor-blue) 75%, transparent) !important; }
         .calendar .ContributionCalendar-day[data-level="4"] { fill: var(--darkColor-blue) !important; }
-
-        .ContributionCalendar-label { display: none !important; }
 
         @keyframes pulseFadeIn {
             from { opacity: 0; transform: translate(-50%, 20px) scale(0.95); }
             to { opacity: 1; transform: translate(-50%, 0) scale(1); }
         }
+
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.2); }
+        }
+    </style>
+</body>
+
+</html>
+
 
         @keyframes pulse-glow {
             0%, 100% { opacity: 1; transform: scale(1); }
