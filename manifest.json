@@ -20,10 +20,9 @@
     {
       "matches": [
         "http://*/*",
-        "https://*/*",
-        "about:blank",
-        "chrome://newtab/*"
+        "https://*/*"
       ],
+      "match_about_blank": true,
       "js": [
         "lib/github-calendar.min.js",
         "content.js"
