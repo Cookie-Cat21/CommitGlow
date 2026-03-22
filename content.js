@@ -1,10 +1,13 @@
 (function() {
-    const GITHUB_USERNAME = "ovindu";
+    let GITHUB_USERNAME = "ovindu"; // Default
     let widgetVisible = false;
 
     // Initialize Widget
     async function init() {
-        const data = await chrome.storage.sync.get('hidden');
+        const data = await chrome.storage.sync.get(['hidden', 'username']);
+        if (data.username) {
+            GITHUB_USERNAME = data.username;
+        }
         if (!data.hidden) {
             createWidget();
         }
