@@ -1,131 +1,140 @@
-/* CommitGlow Styles - Small Widget Refinement */
-:host {
-    all: initial;
-    display: block;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 2147483647;
-    width: 380px;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-}
-
-.widget-container {
-    background: rgba(13, 17, 23, 0.95);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(48, 54, 61, 0.8);
-    border-radius: 12px;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
-    padding: 12px;
-    color: #c9d1d9;
-    position: relative;
-    user-select: none;
-    overflow: hidden;
-}
-
-.widget-header {
+/* Custom New Tab - Brave Aesthetic */
+body {
+    background-color: #0d1117;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 8px;
-    border-bottom: 1px solid rgba(48, 54, 61, 0.5);
-    padding-bottom: 6px;
-}
-
-.title {
-    font-size: 12px;
-    font-weight: 600;
-    color: #238636;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.title::before {
-    content: '';
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    background: #238636;
-    border-radius: 2px;
-    box-shadow: 0 0 6px #238636;
-}
-
-.close-btn {
-    background: none;
-    border: none;
-    color: #8b949e;
-    font-size: 16px;
-    cursor: pointer;
-    line-height: 1;
-    padding: 2px 6px;
-    border-radius: 4px;
-}
-
-.close-btn:hover {
-    background: rgba(240, 246, 252, 0.1);
     color: #f0f6fc;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    overflow: hidden;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 1s ease-in-out;
 }
 
-/* Calendar Resizing for Widget */
-.calendar {
-    min-height: auto !important;
-    border: none !important;
-    background: transparent !important;
-    font-size: 10px !important;
+body::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.3); /* Global overlay for readability */
+    z-index: 1;
 }
 
-.calendar .js-yearly-contributions {
-    margin-top: 0 !important;
+/* Stats Header */
+.stats-header {
+    position: absolute;
+    top: 30px;
+    left: 40px;
+    z-index: 10;
+    display: flex;
+    gap: 40px;
+    opacity: 0.9;
 }
 
-.calendar table.js-calendar-graph-table {
-    border-spacing: 2px !important;
-    transform: scale(0.95);
-    transform-origin: top left;
+.stat-item {
+    display: flex;
+    flex-direction: column;
 }
 
-.calendar .contrib-column {
-    padding: 8px 0 !important;
-    border: none !important;
+.stat-value {
+    font-size: 24px;
+    font-weight: 300;
 }
 
-.calendar .contrib-number {
-    font-size: 14px !important;
-    color: #f0f6fc !important;
-}
-
-.calendar .text-muted {
-    font-size: 9px !important;
-    color: #8b949e !important;
-}
-
-.calendar rect.ContributionCalendar-day {
-    rx: 1;
-    ry: 1;
-}
-
-.calendar text.ContributionCalendar-label {
-    fill: #8b949e !important;
-    font-size: 8px !important;
-}
-
-.fallback-img {
-    width: 100%;
-    border-radius: 6px;
-    filter: brightness(0.8) contrast(1.2);
-}
-
-.streak-info {
-    font-size: 10px;
+.stat-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     color: #8b949e;
-    text-align: center;
     margin-top: 4px;
 }
 
-.loading-msg {
-    text-align: center;
-    padding: 20px;
-    font-size: 12px;
+/* Center Clock & Search */
+.center-content {
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15vh;
+}
+
+#clock {
+    font-size: 96px;
+    font-weight: 200;
+    letter-spacing: -2px;
+    margin-bottom: 10px;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+#date {
+    font-size: 18px;
+    font-weight: 400;
+    color: #c9d1d9;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.search-container {
+    width: 500px;
+    position: relative;
+}
+
+.search-container input {
+    width: 100%;
+    background: rgba(48, 54, 61, 0.4);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 30px;
+    padding: 12px 25px;
+    padding-left: 50px;
+    color: #f0f6fc;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.search-container input:focus {
+    background: rgba(48, 54, 61, 0.7);
+    border-color: #238636;
+    box-shadow: 0 0 20px rgba(35, 134, 54, 0.3);
+}
+
+.search-icon {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
     color: #8b949e;
+}
+
+/* Footer Widget */
+#commit-glow-widget {
+    position: absolute;
+    bottom: 30px;
+    right: 40px;
+    z-index: 10;
+}
+
+.widget-container {
+    background: rgba(13, 17, 23, 0.75) !important;
+    backdrop-filter: blur(15px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    width: 400px !important;
+}
+
+.widget-header .title {
+    color: #39dd34 !important;
+    font-size: 12px !important;
+}
+
+/* Library Overrides for NTP */
+.calendar {
+    transform: scale(0.9);
+    transform-origin: bottom right;
 }
