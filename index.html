@@ -1958,30 +1958,36 @@
         .glow-widget-container {
             position: fixed;
             bottom: 30px;
-            right: 30px;
+            left: 50%;
+            transform: translateX(-50%);
             z-index: 9999;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 24px;
-            padding: 20px;
-            width: 380px;
+            padding: 2.5rem;
+            width: fit-content;
+            min-width: 450px;
             box-shadow: 0 12px 40px rgba(0,0,0,0.3);
             font-family: 'Lexend', sans-serif;
             color: #fff;
             animation: glowFadeIn 1s ease-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .glow-header {
-            font-size: 11px;
+            font-size: 12px;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 12px;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
-            gap: 8px;
-            color: rgba(255, 255, 255, 0.7);
+            gap: 10px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
         }
 
         .glow-dot {
