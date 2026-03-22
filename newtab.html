@@ -1,41 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CommitGlow Dashboard</title>
     <link rel="stylesheet" href="lib/github-calendar-responsive.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body id="bg-body">
-    <!-- Brave-Style Stats -->
-    <div class="stats-header">
+    <!-- Premium Stats Header -->
+    <header class="stats-header">
         <div class="stat-item">
             <span class="stat-value" id="stat-trackers">14,281</span>
-            <span class="stat-label">Trackers Blocked</span>
+            <span class="stat-label">Privacy Blocks</span>
         </div>
         <div class="stat-item">
             <span class="stat-value" id="stat-bandwidth">1.4 GB</span>
-            <span class="stat-label">Bandwidth Saved</span>
+            <span class="stat-label">Data Saved</span>
         </div>
         <div class="stat-item">
             <span class="stat-value" id="stat-time">12 min</span>
-            <span class="stat-label">Time Saved</span>
+            <span class="stat-label">Focus Time</span>
         </div>
-    </div>
+    </header>
 
-    <!-- Central Clock & Search -->
-    <div class="center-content">
+    <!-- Central Hero (Clock & Search) -->
+    <main class="hero">
         <div id="clock">00:00</div>
         <div id="date">JANUARY 1, 2026</div>
         
         <form action="https://search.brave.com/search" method="GET" class="search-container">
             <span class="search-icon">🔍</span>
-            <input type="text" name="q" placeholder="Search Brave..." autocomplete="off">
+            <input type="text" name="q" placeholder="Type to search..." autocomplete="off">
         </form>
-    </div>
+    </main>
 
     <!-- The Glow Widget -->
-    <div id="commit-glow-widget"></div>
+    <aside id="commit-glow-widget"></aside>
+
+    <footer style="position: absolute; bottom: 20px; left: 50px; z-index: 10; font-size: 10px; color: #8b949e; letter-spacing: 1px; text-transform: uppercase;">
+        Powered by CommitGlow 🌿
+    </footer>
 
     <script src="lib/github-calendar.min.js"></script>
     <script src="newtab.js"></script>

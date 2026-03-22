@@ -8,31 +8,31 @@
         const minutes = String(now.getMinutes()).padStart(2, '0');
         document.getElementById('clock').textContent = `${hours}:${minutes}`;
 
-        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        document.getElementById('date').textContent = now.toLocaleDateString('en-US', options);
+        // Format: Monday, April 22nd
+        const options = { weekday: 'long', month: 'long', day: 'numeric' };
+        document.getElementById('date').textContent = now.toLocaleDateString('en-US', options).toUpperCase();
     }
 
-    // 2. Wallpaper Logic (Fetch a beautiful random forest/tech background)
+    // 2. Wallpaper Logic (High-end background with better darkening)
     function setWallpaper() {
-        const keywords = "forest,mist,nature,supercar,dark";
-        const url = `https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&q=80&w=1920`; // Default beautiful forest
+        // We'll use a fixed high-res forest image for now to ensure quality
+        const url = "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=100&w=2560"; 
         document.getElementById('bg-body').style.backgroundImage = `url('${url}')`;
-        
-        // Optional: Professional random pull
-        // fetch(`https://source.unsplash.com/featured/1920x1080?${keywords}`)
-        //    .then(res => document.getElementById('bg-body').style.backgroundImage = `url('${res.url}')`);
     }
 
-    // 3. Stats Logic (Simulated Brave Stats)
+    // 3. Stats Logic (Animated Simulation)
     function updateStats() {
-        // Since we can't access real Brave stats, we generate realistic ones based on time
-        const startStats = { trackers: 12000, bandwidth: 1.2, time: 10 };
         const now = new Date();
         const daysSinceJan = now.getDate() + (now.getMonth() * 30);
         
-        document.getElementById('stat-trackers').textContent = (startStats.trackers + (daysSinceJan * 42)).toLocaleString();
-        document.getElementById('stat-bandwidth').textContent = (startStats.bandwidth + (daysSinceJan * 0.05)).toFixed(1) + " GB";
-        document.getElementById('stat-time').textContent = (startStats.time + (daysSinceJan * 2)) + " min";
+        // Target values
+        const tVal = (14281 + (daysSinceJan * 42));
+        const bVal = (1.4 + (daysSinceJan * 0.05)).toFixed(1);
+        const hVal = (12 + (daysSinceJan * 2));
+
+        document.getElementById('stat-trackers').textContent = tVal.toLocaleString();
+        document.getElementById('stat-bandwidth').textContent = bVal + " GB";
+        document.getElementById('stat-time').textContent = hVal + " min";
     }
 
     // 4. GitHub Calendar Logic
@@ -44,10 +44,13 @@
         widget.innerHTML = `
             <div class="widget-container">
                 <div class="widget-header">
-                    <div class="title">CommitGlow: ${GITHUB_USERNAME}</div>
+                    <div class="title" style="display:flex; align-items:center; gap:8px;">
+                        <span style="width:8px; height:8px; background:#238636; border-radius:50%; box-shadow:0 0 10px #238636;"></span>
+                        Contribution Heatmap: ${GITHUB_USERNAME}
+                    </div>
                 </div>
                 <div id="calendar-target" class="calendar">
-                    <div class="loading-msg">Fetching glow...</div>
+                    <div class="loading-msg">Summoning your progress...</div>
                 </div>
             </div>
         `;
@@ -61,6 +64,13 @@
                 proxy: (username) => fetch(`https://api.bloggify.net/gh-calendar/?username=${username}`).then(r => r.text())
             }).then(() => {
                 target.querySelector('.loading-msg')?.remove();
+                // Custom tooltip styling fix
+                target.querySelectorAll('.day-tooltip').forEach(t => {
+                   t.style.background = 'rgba(0,0,0,0.85)';
+                   t.style.borderRadius = '8px';
+                   t.style.border = '1px solid rgba(255,255,255,0.1)';
+                   t.style.backdropFilter = 'blur(10px)';
+                });
             }).catch(() => showFallback(target));
         } else {
             showFallback(target);
@@ -68,14 +78,17 @@
     }
 
     function showFallback(target) {
-        target.innerHTML = `<img src="https://ghchart.rshah.org/${GITHUB_USERNAME}" class="fallback-img" alt="GitHub Contributions">`;
+        target.innerHTML = `<img src="https://ghchart.rshah.org/${GITHUB_USERNAME}" style="width:100%; border-radius:12px; filter: contrast(1.1);" alt="GitHub Contributions">`;
     }
 
-    // Run Everything
+    // Run Initialization
     updateClock();
     setWallpaper();
     updateStats();
     initCalendar();
-    setInterval(updateClock, 1000);
+    
+    // Low frequency updates
+    setInterval(updateClock, 30000);
+    setInterval(updateStats, 3600000);
 
 })();

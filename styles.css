@@ -1,140 +1,208 @@
-/* Custom New Tab - Brave Aesthetic */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600&family=Lexend:wght@300;600&display=swap');
+
+:root {
+    --bg-dark: #0d1117;
+    --accent-green: #238636;
+    --glass-bg: rgba(13, 17, 23, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --text-main: #f0f6fc;
+    --text-muted: #8b949e;
+}
+
 body {
-    background-color: #0d1117;
+    background: var(--bg-dark);
     margin: 0;
     padding: 0;
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
-    color: #f0f6fc;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
     overflow: hidden;
     position: relative;
     background-size: cover;
     background-position: center;
-    transition: background-image 1s ease-in-out;
+    transition: background-image 1.5s ease;
 }
 
-body::before {
+body::after {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0, 0, 0, 0.3); /* Global overlay for readability */
+    background: radial-gradient(circle at center, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
     z-index: 1;
+    pointer-events: none;
 }
 
-/* Stats Header */
+/* Premium Header Stats */
 .stats-header {
     position: absolute;
-    top: 30px;
-    left: 40px;
+    top: 40px;
+    left: 50px;
     z-index: 10;
     display: flex;
-    gap: 40px;
-    opacity: 0.9;
+    gap: 50px;
 }
 
 .stat-item {
     display: flex;
     flex-direction: column;
+    animation: fadeInDown 0.8s ease-out;
 }
 
 .stat-value {
-    font-size: 24px;
+    font-family: 'Lexend', sans-serif;
+    font-size: 28px;
     font-weight: 300;
+    letter-spacing: -1px;
+    color: #fff;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 
 .stat-label {
-    font-size: 11px;
+    font-size: 10px;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #8b949e;
-    margin-top: 4px;
+    letter-spacing: 1.5px;
+    color: var(--text-muted);
+    margin-top: 2px;
 }
 
-/* Center Clock & Search */
-.center-content {
+/* Central Hero Section */
+.hero {
     z-index: 10;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 15vh;
+    margin-top: 18vh;
+    animation: fadeInUp 1s ease-out;
 }
 
 #clock {
-    font-size: 96px;
-    font-weight: 200;
-    letter-spacing: -2px;
-    margin-bottom: 10px;
-    text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    font-family: 'Lexend', sans-serif;
+    font-size: 120px;
+    font-weight: 300;
+    letter-spacing: -4px;
+    line-height: 1;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 #date {
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 400;
-    color: #c9d1d9;
-    margin-bottom: 40px;
+    color: var(--text-muted);
+    margin-top: 10px;
+    margin-bottom: 50px;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 4px;
 }
 
+/* Premium Search Bar */
 .search-container {
-    width: 500px;
+    width: 580px;
     position: relative;
+    transition: transform 0.3s ease;
+}
+
+.search-container:focus-within {
+    transform: scale(1.02);
 }
 
 .search-container input {
     width: 100%;
-    background: rgba(48, 54, 61, 0.4);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 30px;
-    padding: 12px 25px;
-    padding-left: 50px;
-    color: #f0f6fc;
-    font-size: 16px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 40px;
+    padding: 16px 30px;
+    padding-left: 60px;
+    color: #fff;
+    font-size: 18px;
+    font-family: 'Inter', sans-serif;
     outline: none;
-    transition: all 0.3s ease;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .search-container input:focus {
-    background: rgba(48, 54, 61, 0.7);
-    border-color: #238636;
-    box-shadow: 0 0 20px rgba(35, 134, 54, 0.3);
+    border-color: var(--accent-green);
+    background: rgba(13, 17, 23, 0.8);
+    box-shadow: 0 15px 50px rgba(35, 134, 54, 0.2);
 }
 
 .search-icon {
     position: absolute;
-    left: 20px;
+    left: 22px;
     top: 50%;
     transform: translateY(-50%);
-    color: #8b949e;
+    font-size: 20px;
+    opacity: 0.5;
 }
 
-/* Footer Widget */
+/* The Widget - Integrated */
 #commit-glow-widget {
     position: absolute;
-    bottom: 30px;
-    right: 40px;
+    bottom: 40px;
+    right: 50px;
     z-index: 10;
+    animation: fadeIn 1.5s ease;
 }
 
 .widget-container {
-    background: rgba(13, 17, 23, 0.75) !important;
-    backdrop-filter: blur(15px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    width: 400px !important;
+    background: var(--glass-bg) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    border: 1px solid var(--glass-border) !important;
+    border-radius: 20px !important;
+    width: 420px !important;
+    padding: 20px !important;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5) !important;
+}
+
+.widget-header {
+    border-bottom: none !important;
+    margin-bottom: 20px !important;
 }
 
 .widget-header .title {
-    color: #39dd34 !important;
-    font-size: 12px !important;
+    font-family: 'Lexend', sans-serif !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    font-size: 10px !important;
 }
 
-/* Library Overrides for NTP */
 .calendar {
-    transform: scale(0.9);
-    transform-origin: bottom right;
+    transform: scale(1);
+    margin-top: 10px !important;
 }
+
+.calendar rect.ContributionCalendar-day {
+    rx: 3; ry: 3;
+    transition: transform 0.2s ease;
+}
+
+.calendar rect.ContributionCalendar-day:hover {
+    transform: scale(1.2);
+    stroke: #fff;
+    stroke-width: 1px;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Custom Scrollbar (Invisible but functional) */
+::-webkit-scrollbar { display: none; }
